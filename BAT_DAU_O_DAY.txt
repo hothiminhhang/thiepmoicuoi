@@ -1,0 +1,13 @@
+THIỆP MỜI CƯỚI: TRẦN VĂN B & NGUYỄN THỊ A
+Tên kho GitHub: thiepmoicuoiVanBThiA
+Link sau khi triển khai: https://TEN_GITHUB.github.io/thiepmoicuoiVanBThiA/
+
+1) Tạo Google Sheet, dán Code.gs vào Apps Script, chạy setupWeddingSheets.
+2) Triển khai Apps Script dạng Web app (Execute as: Me; Access: Anyone); lấy URL /exec.
+3) Thay URL trong config.js (window.WEDDING_API_URL).
+4) Tạo GitHub repo PUBLIC tên thiepmoicuoiVanBThiA và upload index.html, style.css, app.js, config.js.
+5) Bật Settings > Pages > Deploy from branch > main > /(root).
+6) Kiểm thử gửi RSVP, lời chúc bằng một trình duyệt ẩn danh.
+
+Sau khi trang được xuất bản, không cần chạy code hay bật laptop.
+Đọc HUONG_DAN.md để biết cách làm chi tiết.

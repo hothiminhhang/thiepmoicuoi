@@ -1,0 +1,19 @@
+﻿Mã trường,Giá trị (chỉnh cột B),Ghi chú
+groom_name,Chồng của MinHan,Tên chú rể
+bride_name,MinHan,Tên cô dâu
+wedding_date,2027-12-20T10:30:00+07:00,Ngày đếm ngược
+groom_map_address,"Yên Dũng, TP. Bắc Ninh",Địa chỉ bản đồ nhà trai
+bride_map_address,"Yên Dũng, TP. Bắc Ninh",Địa chỉ bản đồ nhà gái
+groom_family_address,"Yên Dũng, TP. Bắc Ninh",Địa chỉ nhà trai hiển thị trong thiệp
+bride_family_address,"Yên Dũng, TP. Bắc Ninh",Địa chỉ nhà gái hiển thị trong thiệp
+event_groom_location,"Yên Dũng, TP. Bắc Ninh",Địa điểm tiệc nhà trai
+event_bride_location,"Yên Dũng, TP. Bắc Ninh",Địa điểm tiệc nhà gái
+public_wishes,TRUE,Hiện lời chúc đã duyệt
+hero_photo,,URL ảnh cưới mở đầu HTTPS (ưu tiên ảnh dọc)
+music_url,music/Hon-Ca-Yeu-Duc-Phuc.mp3,Đường dẫn tệp nhạc đặt trong thư mục music
+album_1,,Link ảnh cưới 1
+album_2,,Link ảnh cưới 2
+album_3,,Link ảnh cưới 3
+album_4,,Link ảnh cưới 4
+album_5,,Link ảnh cưới 5
+album_6,,Link ảnh cưới 6

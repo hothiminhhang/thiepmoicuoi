@@ -1,0 +1,4 @@
+Hãy chép file Hon-Ca-Yeu-Duc-Phuc.mp3 của bạn vào CHÍNH thư mục music này.
+Website đã cấu hình sẵn music_url = music/Hon-Ca-Yeu-Duc-Phuc.mp3.
+File MP3 hiện không nằm trong bộ tải xuống vì chưa được bạn tải lên cuộc trò chuyện.
+Chỉ sử dụng tệp khi bạn có quyền sử dụng và phân phối.
