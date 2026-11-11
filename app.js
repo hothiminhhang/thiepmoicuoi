@@ -1,18 +1,49 @@
 const DEMO={
-  groom_name:'Chồng của MinHan',
-  bride_name:'MinHan',
-  wedding_date:'2027-12-20T10:30:00+07:00',
-  invitation_text:'Trân trọng kính mời bạn cùng gia đình đến chung vui trong ngày hạnh phúc của hai chúng tôi.',
-  groom_father:'Nguyễn Văn A',groom_mother:'Lê Thị B',bride_father:'Trần Văn C',bride_mother:'Phạm Thị D',
-  groom_family_address:'Yên Dũng, TP. Bắc Ninh',bride_family_address:'Yên Dũng, TP. Bắc Ninh',
-  event_groom_title:'Tiệc cưới nhà trai',event_bride_title:'Tiệc cưới nhà gái',
-  event_groom_datetime:'2027-12-19T16:00:00+07:00',event_bride_datetime:'2027-12-20T10:30:00+07:00',
-  event_groom_location:'Yên Dũng, TP. Bắc Ninh',event_bride_location:'Yên Dũng, TP. Bắc Ninh',
-  groom_map_address:'Yên Dũng, TP. Bắc Ninh',bride_map_address:'Yên Dũng, TP. Bắc Ninh',
-  groom_map_link:'',bride_map_link:'',hero_photo:'',music_url:'music/Hon-Ca-Yeu-Duc-Phuc.mp3',
-  album_1:'',album_2:'',album_3:'',album_4:'',album_5:'',album_6:'',
-  groom_qr_image:'',bride_qr_image:'',groom_bank:'Chưa cập nhật',bride_bank:'Chưa cập nhật',
-  public_wishes:'TRUE'
+  site_title:'Thiệp mời cưới Văn Công - Thu Hà',
+  wedding_quote:'Một người vừa vặn, một tình yêu vừa đủ, một đời bình yên',
+  groom_name:'Văn Công',
+  bride_name:'Thu Hà',
+  groom_father:'Nguyễn Văn Đoàn',
+  groom_mother:'Dương Thị Hà',
+  bride_father:'Dương Ngọc Hân',
+  bride_mother:'Nguyễn Thị Hương',
+  groom_family_address:'An Thái, Yên Lư, Yên Dũng, Bắc Ninh',
+  bride_family_address:'Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh',
+  invitation_text:'Trân trọng kính mời bạn cùng gia đình đến chung vui trong ngày hạnh phúc của Văn Công và Thu Hà.',
+  wedding_date:'2026-12-20T15:00:00+07:00',
+  event_groom_title:'Tiệc cưới nhà trai',
+  event_bride_title:'Tiệc cưới nhà gái',
+  event_groom_datetime:'2026-12-19T16:30:00+07:00',
+  event_bride_datetime:'2026-12-19T16:30:00+07:00',
+  event_groom_lunar:'Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)',
+  event_bride_lunar:'Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)',
+  event_groom_location:'An Thái, Yên Lư, Yên Dũng, Bắc Ninh',
+  event_bride_location:'Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh',
+  ceremony_groom_title:'LỄ THÀNH HÔN',
+  ceremony_bride_title:'LỄ VU QUY',
+  ceremony_groom_datetime:'2026-12-20T15:00:00+07:00',
+  ceremony_bride_datetime:'2026-12-20T13:30:00+07:00',
+  ceremony_groom_lunar:'Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)',
+  ceremony_bride_lunar:'Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)',
+  schedule_note:'Lịch nổi bật: 19 & 20/12/2026',
+  groom_map_address:'An Thái, Yên Lư, Yên Dũng, Bắc Ninh',
+  bride_map_address:'Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh',
+  groom_map_link:'',
+  bride_map_link:'',
+  hero_photo:'',
+  album_1:'',
+  album_2:'',
+  album_3:'',
+  album_4:'',
+  album_5:'',
+  album_6:'',
+  music_url:'music/Hon-Ca-Yeu-Duc-Phuc.mp3',
+  groom_qr_image:'',
+  bride_qr_image:'',
+  groom_bank:'Chưa cập nhật',
+  bride_bank:'Chưa cập nhật',
+  public_wishes:'TRUE',
+  thank_you:'Một ngày vui sẽ trở nên trọn vẹn và ý nghĩa hơn khi có sự hiện diện của những người thân yêu. Chúng mình rất hân hạnh được đón tiếp mọi người và cùng nhau lưu giữ những khoảnh khắc đáng nhớ trong ngày trọng đại này.'
 };
 let DATA={...DEMO};
 const API=(window.WEDDING_API_URL||'').trim();
@@ -35,9 +66,9 @@ function render(){
   photo.hidden=!photoUrl;placeholder.hidden=!!photoUrl;
   if(photoUrl){photo.src=photoUrl;photo.onerror=()=>{photo.hidden=true;placeholder.hidden=false;}} else photo.removeAttribute('src');
   renderMusic();
-  document.querySelectorAll('[data-field]').forEach(x=>x.textContent=asText(DATA[x.dataset.field]||DEMO[x.dataset.field]||''));
+  document.querySelectorAll('[data-field]').forEach(x=>x.textContent=asText(DATA[x.dataset.field] ?? DEMO[x.dataset.field] ?? ''));
   const wd=new Date(DATA.wedding_date);el('heroDate').textContent=Number.isNaN(wd.getTime())?'Ngày cưới sẽ cập nhật':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}).format(wd).replaceAll('/',' • ');
-  el('groomTime').textContent=dateLabel(DATA.event_groom_datetime);el('brideTime').textContent=dateLabel(DATA.event_bride_datetime);
+  el('groomTime').textContent=dateLabel(DATA.event_groom_datetime);el('brideTime').textContent=dateLabel(DATA.event_bride_datetime);el('ceremonyGroomTime').textContent=dateLabel(DATA.ceremony_groom_datetime);el('ceremonyBrideTime').textContent=dateLabel(DATA.ceremony_bride_datetime);
   el('footerNames').textContent=DATA.groom_name+' & '+DATA.bride_name;
   document.title='Thiệp cưới | '+DATA.groom_name+' & '+DATA.bride_name;
   [['Groom','groom'],['Bride','bride']].forEach(([suffix,key])=>{
@@ -52,7 +83,7 @@ function render(){
   for(let i=1;i<=6;i++){
     const item=document.createElement('div');item.className='gallery-item';const url=safeUrl(DATA['album_'+i]);
     if(url){const img=document.createElement('img');img.src=url;img.loading='lazy';img.alt='Ảnh cưới '+i;img.onerror=()=>{img.remove();item.textContent='Ảnh cưới '+i};item.append(img)}
-    else item.innerHTML='<span>Ảnh cưới '+i+'</span>';
+    else item.textContent='Ảnh cưới '+i+' · Chờ cập nhật';
     gallery.append(item);
   }
 }
@@ -86,7 +117,7 @@ function submitViaIframe(type,payload){return new Promise((resolve,reject)=>{
 function bindForm(formId,type,statusId){const form=el(formId),status=el(statusId);form.addEventListener('submit',async e=>{
   e.preventDefault();if(!form.reportValidity())return;
   const button=form.querySelector('button[type=submit]');button.disabled=true;button.textContent='Đang gửi...';status.className='form-status';status.textContent='Đang lưu vào Google Sheets...';
-  try{const payload=Object.fromEntries(new FormData(form).entries());await submitViaIframe(type,payload);status.className='form-status ok';status.textContent='Đã gửi thành công! Cảm ơn bạn 💖';form.reset();if(type==='wish')setTimeout(loadWishes,1200)}
+  try{const payload=Object.fromEntries(new FormData(form).entries());await submitViaIframe(type,payload);status.className='form-status ok';status.textContent='Đã gửi thành công. Cảm ơn bạn!';form.reset();if(type==='wish')setTimeout(loadWishes,1200)}
   catch(err){status.className='form-status error';status.textContent=err.message}
   finally{button.disabled=false;button.textContent=type==='rsvp'?'Gửi xác nhận ♥':'Gửi lời chúc ✦'}
 })}
@@ -103,3 +134,7 @@ el('openInvitation').addEventListener('click',()=>{
   const audio=el('weddingMusic');
   if(audio.dataset.source && audio.paused){audio.play().then(renderMusic).catch(()=>{});} 
 });
+
+// Hiệu ứng xuất hiện mềm khi cuộn trang, tôn trọng cài đặt giảm chuyển động.
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(items=>{for(const item of items){if(item.isIntersecting){item.target.classList.add('show');observer.unobserve(item.target)}}},{threshold:.12});document.querySelectorAll('.reveal').forEach(node=>observer.observe(node))}else document.querySelectorAll('.reveal').forEach(node=>node.classList.add('show'));
+window.addEventListener('scroll',()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);el('readingProgress').style.width=(scrollY/max*100)+'%'},{passive:true});

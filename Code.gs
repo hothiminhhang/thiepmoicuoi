@@ -17,37 +17,110 @@ function setupWeddingSheets(){
   if(config.getLastRow()===0){
     config.getRange(1,1,1,3).setValues([['Mã trường','Giá trị (chỉnh cột B)','Ghi chú']]);
     const defaults=[
-      ['groom_name','Chồng của MinHan','Tên chú rể'],['bride_name','MinHan','Tên cô dâu'],
-      ['wedding_date','2027-12-20T10:30:00+07:00','Ngày đếm ngược ISO, giờ Việt Nam'],
-      ['invitation_text','Trân trọng kính mời bạn cùng gia đình đến chung vui trong ngày hạnh phúc của hai chúng tôi.','Lời mời'],
-      ['groom_father','Nguyễn Văn A','Bố chú rể'],['groom_mother','Lê Thị B','Mẹ chú rể'],
-      ['bride_father','Trần Văn C','Bố cô dâu'],['bride_mother','Phạm Thị D','Mẹ cô dâu'],
-      ['groom_family_address','Yên Dũng, TP. Bắc Ninh',''],['bride_family_address','Yên Dũng, TP. Bắc Ninh',''],
-      ['event_groom_title','Tiệc cưới nhà trai',''],['event_bride_title','Tiệc cưới nhà gái',''],
-      ['event_groom_datetime','2027-12-19T16:00:00+07:00','Ngày giờ ISO'],
-      ['event_bride_datetime','2027-12-20T10:30:00+07:00','Ngày giờ ISO'],
-      ['event_groom_location','Yên Dũng, TP. Bắc Ninh',''],['event_bride_location','Yên Dũng, TP. Bắc Ninh',''],
-      ['groom_map_address','Yên Dũng, TP. Bắc Ninh','Địa chỉ Google Maps tìm kiếm'],
-      ['bride_map_address','Yên Dũng, TP. Bắc Ninh','Địa chỉ Google Maps tìm kiếm'],
-      ['groom_map_link','','Link chỉ đường tùy chọn; để trống sẽ tự tạo'],['bride_map_link','',''],
-      ['hero_photo','','URL ảnh cưới mở đầu (HTTPS ảnh trực tiếp)'],
-      ['music_url','music/Hon-Ca-Yeu-Duc-Phuc.mp3','Đường dẫn MP3 trong thư mục music (cần có quyền sử dụng)'],
-      ['album_1','','Link ảnh trực tiếp https://...jpg/png'],['album_2','',''],['album_3','',''],['album_4','',''],['album_5','',''],['album_6','',''],
-      ['groom_qr_image','','Link ảnh mã QR trực tiếp'],['bride_qr_image','',''],
-      ['groom_bank','Chưa cập nhật','Ngân hàng, chủ tài khoản, STK'],['bride_bank','Chưa cập nhật',''],
-      ['public_wishes','TRUE','TRUE: hiện lời chúc đã duyệt; FALSE: ẩn lời chúc']
+      ['site_title','Thiệp mời cưới Văn Công - Thu Hà','Có thể sửa nội dung trong cột B'],
+      ['wedding_quote','Một người vừa vặn, một tình yêu vừa đủ, một đời bình yên','Có thể sửa nội dung trong cột B'],
+      ['groom_name','Văn Công','Có thể sửa nội dung trong cột B'],
+      ['bride_name','Thu Hà','Có thể sửa nội dung trong cột B'],
+      ['groom_father','Nguyễn Văn Đoàn','Có thể sửa nội dung trong cột B'],
+      ['groom_mother','Dương Thị Hà','Có thể sửa nội dung trong cột B'],
+      ['bride_father','Dương Ngọc Hân','Có thể sửa nội dung trong cột B'],
+      ['bride_mother','Nguyễn Thị Hương','Có thể sửa nội dung trong cột B'],
+      ['groom_family_address','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['bride_family_address','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['invitation_text','Trân trọng kính mời bạn cùng gia đình đến chung vui trong ngày hạnh phúc của Văn Công và Thu Hà.','Có thể sửa nội dung trong cột B'],
+      ['wedding_date','2026-12-20T15:00:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_groom_title','Tiệc cưới nhà trai','Có thể sửa nội dung trong cột B'],
+      ['event_bride_title','Tiệc cưới nhà gái','Có thể sửa nội dung trong cột B'],
+      ['event_groom_datetime','2026-12-19T16:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_bride_datetime','2026-12-19T16:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_groom_lunar','Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['event_bride_lunar','Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['event_groom_location','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['event_bride_location','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['ceremony_groom_title','LỄ THÀNH HÔN','Có thể sửa nội dung trong cột B'],
+      ['ceremony_bride_title','LỄ VU QUY','Có thể sửa nội dung trong cột B'],
+      ['ceremony_groom_datetime','2026-12-20T15:00:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['ceremony_bride_datetime','2026-12-20T13:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['ceremony_groom_lunar','Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['ceremony_bride_lunar','Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['schedule_note','Lịch nổi bật: 19 & 20/12/2026','Có thể sửa nội dung trong cột B'],
+      ['groom_map_address','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['bride_map_address','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['groom_map_link','','Có thể sửa nội dung trong cột B'],
+      ['bride_map_link','','Có thể sửa nội dung trong cột B'],
+      ['hero_photo','','Có thể sửa nội dung trong cột B'],
+      ['album_1','','Có thể sửa nội dung trong cột B'],
+      ['album_2','','Có thể sửa nội dung trong cột B'],
+      ['album_3','','Có thể sửa nội dung trong cột B'],
+      ['album_4','','Có thể sửa nội dung trong cột B'],
+      ['album_5','','Có thể sửa nội dung trong cột B'],
+      ['album_6','','Có thể sửa nội dung trong cột B'],
+      ['music_url','music/Hon-Ca-Yeu-Duc-Phuc.mp3','Có thể sửa nội dung trong cột B'],
+      ['groom_qr_image','','Có thể sửa nội dung trong cột B'],
+      ['bride_qr_image','','Có thể sửa nội dung trong cột B'],
+      ['groom_bank','Chưa cập nhật','Có thể sửa nội dung trong cột B'],
+      ['bride_bank','Chưa cập nhật','Có thể sửa nội dung trong cột B'],
+      ['public_wishes','TRUE','Có thể sửa nội dung trong cột B'],
+      ['thank_you','Một ngày vui sẽ trở nên trọn vẹn và ý nghĩa hơn khi có sự hiện diện của những người thân yêu. Chúng mình rất hân hạnh được đón tiếp mọi người và cùng nhau lưu giữ những khoảnh khắc đáng nhớ trong ngày trọng đại này.','Có thể sửa nội dung trong cột B']
     ];
     config.getRange(2,1,defaults.length,3).setValues(defaults);
   } else {
+    // Khi đã có Google Sheets, chỉ thêm mã trường còn thiếu, không ghi đè dữ liệu thật.
     const keys=config.getRange(2,1,Math.max(1,config.getLastRow()-1),1).getDisplayValues().flat();
-    if(!keys.includes('hero_photo'))config.appendRow(['hero_photo','','URL ảnh cưới mở đầu (HTTPS ảnh trực tiếp)']);
-    if(!keys.includes('music_url'))config.appendRow(['music_url','music/Hon-Ca-Yeu-Duc-Phuc.mp3','Đường dẫn MP3 được phép sử dụng']);
+    const defaults=[
+      ['site_title','Thiệp mời cưới Văn Công - Thu Hà','Có thể sửa nội dung trong cột B'],
+      ['wedding_quote','Một người vừa vặn, một tình yêu vừa đủ, một đời bình yên','Có thể sửa nội dung trong cột B'],
+      ['groom_name','Văn Công','Có thể sửa nội dung trong cột B'],
+      ['bride_name','Thu Hà','Có thể sửa nội dung trong cột B'],
+      ['groom_father','Nguyễn Văn Đoàn','Có thể sửa nội dung trong cột B'],
+      ['groom_mother','Dương Thị Hà','Có thể sửa nội dung trong cột B'],
+      ['bride_father','Dương Ngọc Hân','Có thể sửa nội dung trong cột B'],
+      ['bride_mother','Nguyễn Thị Hương','Có thể sửa nội dung trong cột B'],
+      ['groom_family_address','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['bride_family_address','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['invitation_text','Trân trọng kính mời bạn cùng gia đình đến chung vui trong ngày hạnh phúc của Văn Công và Thu Hà.','Có thể sửa nội dung trong cột B'],
+      ['wedding_date','2026-12-20T15:00:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_groom_title','Tiệc cưới nhà trai','Có thể sửa nội dung trong cột B'],
+      ['event_bride_title','Tiệc cưới nhà gái','Có thể sửa nội dung trong cột B'],
+      ['event_groom_datetime','2026-12-19T16:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_bride_datetime','2026-12-19T16:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['event_groom_lunar','Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['event_bride_lunar','Ngày 11/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['event_groom_location','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['event_bride_location','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['ceremony_groom_title','LỄ THÀNH HÔN','Có thể sửa nội dung trong cột B'],
+      ['ceremony_bride_title','LỄ VU QUY','Có thể sửa nội dung trong cột B'],
+      ['ceremony_groom_datetime','2026-12-20T15:00:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['ceremony_bride_datetime','2026-12-20T13:30:00+07:00','Ngày giờ ISO - múi giờ Việt Nam'],
+      ['ceremony_groom_lunar','Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['ceremony_bride_lunar','Ngày 12/11/2026 âm lịch (theo thông tin cung cấp)','Có thể sửa nội dung trong cột B'],
+      ['schedule_note','Lịch nổi bật: 19 & 20/12/2026','Có thể sửa nội dung trong cột B'],
+      ['groom_map_address','An Thái, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['bride_map_address','Thạch Xá, Yên Lư, Yên Dũng, Bắc Ninh','Có thể sửa nội dung trong cột B'],
+      ['groom_map_link','','Có thể sửa nội dung trong cột B'],
+      ['bride_map_link','','Có thể sửa nội dung trong cột B'],
+      ['hero_photo','','Có thể sửa nội dung trong cột B'],
+      ['album_1','','Có thể sửa nội dung trong cột B'],
+      ['album_2','','Có thể sửa nội dung trong cột B'],
+      ['album_3','','Có thể sửa nội dung trong cột B'],
+      ['album_4','','Có thể sửa nội dung trong cột B'],
+      ['album_5','','Có thể sửa nội dung trong cột B'],
+      ['album_6','','Có thể sửa nội dung trong cột B'],
+      ['music_url','music/Hon-Ca-Yeu-Duc-Phuc.mp3','Có thể sửa nội dung trong cột B'],
+      ['groom_qr_image','','Có thể sửa nội dung trong cột B'],
+      ['bride_qr_image','','Có thể sửa nội dung trong cột B'],
+      ['groom_bank','Chưa cập nhật','Có thể sửa nội dung trong cột B'],
+      ['bride_bank','Chưa cập nhật','Có thể sửa nội dung trong cột B'],
+      ['public_wishes','TRUE','Có thể sửa nội dung trong cột B'],
+      ['thank_you','Một ngày vui sẽ trở nên trọn vẹn và ý nghĩa hơn khi có sự hiện diện của những người thân yêu. Chúng mình rất hân hạnh được đón tiếp mọi người và cùng nhau lưu giữ những khoảnh khắc đáng nhớ trong ngày trọng đại này.','Có thể sửa nội dung trong cột B']
+    ];
+    defaults.filter(row=>!keys.includes(row[0])).forEach(row=>config.appendRow(row));
   }
   const rsvp=book.getSheetByName(RSVP_TAB)||book.insertSheet(RSVP_TAB);
   const wish=book.getSheetByName(WISH_TAB)||book.insertSheet(WISH_TAB);
   if(rsvp.getLastRow()===0)rsvp.appendRow(RSVP_HEADERS);
   if(wish.getLastRow()===0)wish.appendRow(WISH_HEADERS);
-  [config,rsvp,wish].forEach(sh=>{sh.setFrozenRows(1);sh.getRange(1,1,1,sh.getLastColumn()).setFontWeight('bold').setBackground('#f3d7e5').setFontColor('#7a5164');sh.autoResizeColumns(1,sh.getLastColumn())});
+  [config,rsvp,wish].forEach(sh=>{sh.setFrozenRows(1);sh.getRange(1,1,1,sh.getLastColumn()).setFontWeight('bold').setBackground('#d8edf7').setFontColor('#315d75');sh.autoResizeColumns(1,sh.getLastColumn())});
   book.setSpreadsheetTimeZone('Asia/Ho_Chi_Minh');
   SpreadsheetApp.getUi().alert('Đã tạo 3 tab: Cau_hinh, Xac_nhan_tham_du, Loi_chuc.');
 }
